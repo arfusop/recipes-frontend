@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form, FormGroup, FormInput } from "shards-react";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -17,32 +17,39 @@ const Register = () => {
     <div className="registerContainer">
       <div className="registerHeader">Main Course</div>
       <div className="registerForm">
-        <Form>
-          <FormGroup>
-            <FormInput
-              onChange={e => onChange(e)}
-              placeholder="Email"
-              value={email}
-              id="email"
-              name="email"
-            />
-            <FormInput
-              onChange={e => onChange(e)}
-              placeholder="Password"
-              value={password}
-              id="password"
-              name="password"
-            />
-            <FormInput
-              onChange={e => onChange(e)}
-              placeholder="Confirm password"
-              value={password2}
-              id="password2"
-              name="password2"
-            />
-          </FormGroup>
-          <Button>Enter</Button>
-        </Form>
+        <div className="formHeader">Sign Up</div>
+        <div className="form">
+          <input
+            onChange={e => onChange(e)}
+            placeholder="Email"
+            value={email}
+            id="email"
+            name="email"
+            required
+          />
+          <input
+            onChange={e => onChange(e)}
+            placeholder="Password"
+            value={password}
+            id="password"
+            name="password"
+            required
+            minLength="6"
+          />
+          <input
+            onChange={e => onChange(e)}
+            placeholder="Confirm password"
+            value={password2}
+            id="password2"
+            name="password2"
+            required
+            minLength="6"
+          />
+          <button>Enter</button>
+        </div>
+      </div>
+      <div className="registerLoginRow">
+        Already have an account? <Link to="/login">Log in</Link>
       </div>
     </div>
   );
