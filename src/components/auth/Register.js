@@ -13,6 +13,15 @@ const Register = () => {
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
+  const onSubmit = e => {
+    e.preventDefault();
+    if (password !== password2) {
+      console.log("passwords do not match");
+    } else {
+      console.log(formData);
+    }
+  };
+
   return (
     <div className="registerContainer">
       <div className="registerHeader">Main Course</div>
@@ -45,7 +54,7 @@ const Register = () => {
             required
             minLength="6"
           />
-          <button>Enter</button>
+          <button onClick={e => onSubmit(e)}>Enter</button>
         </div>
       </div>
       <div className="registerLoginRow">
