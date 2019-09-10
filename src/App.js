@@ -9,6 +9,8 @@ import Alert from "./components/layout/Alert";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 
+import "antd/dist/antd.css";
+
 const App = () => {
   return (
     <Provider store={store}>
