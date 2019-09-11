@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Nav from './styled/Nav';
 
 const Navbar = () => {
   return (
-    <nav className="navbar">
+    <Nav className="navbar">
       <Link to="/">Main Course</Link>
       <ul>
         <li>
@@ -16,7 +17,7 @@ const Navbar = () => {
           <Link to="login">Log In</Link>
         </li>
       </ul>
-    </nav>
+    </Nav>
   );
 };
 
