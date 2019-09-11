@@ -10,15 +10,28 @@ const Body = styled.div`
 
 	.formHeader {
 		display: flex;
-		height: 35px;
+		/* height: 35px; */
 		justify-content: center;
-		align-items: center;
-	}
+    align-items: center;
+    font-size: 18px;
+    padding-bottom: 10px;
+  }
+  
+  .registerForm {
+    border: 1px solid #1890ff;
+    padding: 20px;
+    border-radius: 4px;
+  }
 
 	.names {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		grid-gap: 10px;
+	}
+
+	.registerHeader {
+    font-size: 22px;
+    text-align: center;
 	}
 
 	.form {
@@ -32,7 +45,11 @@ const Body = styled.div`
 		display: flex;
 		justify-content: center;
 		align-items: center;
-	}
+  }
+  
+  .routeLink {
+    padding-left: 3px;
+  }
 `;
 
 export default Body;

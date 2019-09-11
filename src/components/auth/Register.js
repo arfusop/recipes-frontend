@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Button, Input } from "antd";
+import { Button, Input, Icon } from "antd";
 // import PropTypes from 'prop-types';
 import Body from "./styled/Body";
 
@@ -86,18 +86,16 @@ const Register = () => {
 						minLength="6"
 						size="large"
 					/>
-					<Button
-						icon="check"
-						size="large"
-						type="primary"
-						onClick={e => onSubmit(e)}
-					>
-						Enter
+					<Button size="large" type="primary" onClick={e => onSubmit(e)}>
+						Sign Up <Icon type="right" />
 					</Button>
 				</div>
 			</div>
 			<div className="registerLoginRow">
-				Already have an account? <Link to="/login">Log in</Link>
+				Already have an account?{" "}
+				<Link className="routeLink" to="/login">
+					Log in
+				</Link>
 			</div>
 		</Body>
 	);
