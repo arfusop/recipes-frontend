@@ -12,11 +12,23 @@ const authReducer = (state = initialState, action) => {
 
   switch (type) {
     case REGISTER_SUCCESS:
-      break;
+      localStorage.setItem('token', payload.token);
+      return {
+        ...state,
+        ...payload,
+        isAuthenticated: true,
+        loading: false,
+      }
     case REGISTER_FAIL:
-      break;
+      localStorage.removeItem('token');
+      return {
+        ...state,
+        token: null,
+        isAuthenticated: false,
+        loading: false,
+      }
 
     default:
-      break;
+      return state;
   }
 };
