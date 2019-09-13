@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button, Input, Icon } from "antd";
 // import PropTypes from 'prop-types';
+import { register } from "../../store/actions/authActions";
 import Body from "./styled/Body";
 
 import { setAlert } from "../../store/actions/alertActions";
@@ -28,6 +29,7 @@ const Register = () => {
 			dispatch(setAlert("Passwords do not match", "danger"));
 		} else {
 			console.log("Success");
+			dispatch(register({ firstName, lastName, email, password }));
 		}
 	};
 
