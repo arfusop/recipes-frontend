@@ -28,7 +28,6 @@ const Register = () => {
 		if (password !== password2) {
 			dispatch(setAlert("Passwords do not match", "danger"));
 		} else {
-			console.log("Success");
 			dispatch(register({ firstName, lastName, email, password }));
 		}
 	};
