@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Link, Redirect } from "react-router-dom";
 import { Button, Input, Icon } from "antd";
 import Body from "./styled/Body";
+import { login } from "../../store/actions/authActions";
 
 const Login = () => {
+	const isAuth = useSelector(state => state.auth);
 	const [formData, setFormData] = useState({
 		email: "",
 		password: ""
@@ -16,8 +19,14 @@ const Login = () => {
 
 	const onSubmit = e => {
 		e.preventDefault();
-		console.log("SUCCESS");
+
+		login(email, password);
 	};
+
+	// redirect if logged in
+	if (isAuth) {
+		return <Redirect to="/profile" />;
+	}
 
 	return (
 		<Body className="registerContainer">

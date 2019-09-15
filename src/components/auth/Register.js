@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Button, Input, Icon } from "antd";
 // import PropTypes from 'prop-types';
 import { register } from "../../store/actions/authActions";
@@ -10,6 +10,7 @@ import { setAlert } from "../../store/actions/alertActions";
 
 const Register = () => {
 	const dispatch = useDispatch();
+	const isAuth = useSelector(state => state.auth);
 	const [formData, setFormData] = useState({
 		firstName: "",
 		lastName: "",
@@ -31,6 +32,11 @@ const Register = () => {
 			dispatch(register({ firstName, lastName, email, password }));
 		}
 	};
+
+	// redirect if logged in || registered
+	if (isAuth) {
+		return <Redirect to="/profile" />;
+	}
 
 	return (
 		<Body className="registerContainer">
