@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { Icon } from "antd";
 import Nav from "./styled/Nav";
 import { logout } from "../../store/actions/authActions";
 
@@ -8,11 +9,21 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
   const { isAuthenticated, loading } = auth;
-  // console.log(auth);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    return <Redirect to="/" />;
+  };
+
   const authLinks = (
     <ul>
       <li>
-        <div onClick={dispatch(logout)}>Logout</div>
+        <Icon type="user" />
+        <Link to="/profile">Profile</Link>
+      </li>
+      <li>
+        <Icon type="logout" />
+        <div onClick={handleLogout}>Logout</div>
       </li>
     </ul>
   );
@@ -20,12 +31,11 @@ const Navbar = () => {
   const guestLinks = (
     <ul>
       <li>
-        <Link to="/profile">Profile</Link>
-      </li>
-      <li>
+        <Icon type="user-add" />
         <Link to="register">Sign Up</Link>
       </li>
       <li>
+        <Icon type="login" />
         <Link to="login">Log In</Link>
       </li>
     </ul>

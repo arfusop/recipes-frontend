@@ -15,16 +15,21 @@ import setAuthToken from "../../../utils/setAutoToken";
 export const loadUser = () => async dispatch => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
-  }
 
-  try {
-    const res = await axios.get("/api/auth");
-
-    dispatch({
-      type: USER_LOADED,
-      payload: res.data
-    });
-  } catch (error) {
+    try {
+      const res = await axios.get(
+        "https://maincourse-backend.herokuapp.com/api/auth"
+      );
+      dispatch({
+        type: USER_LOADED,
+        payload: res.data
+      });
+    } catch (error) {
+      dispatch({
+        type: AUTH_ERROR
+      });
+    }
+  } else {
     dispatch({
       type: AUTH_ERROR
     });
@@ -47,7 +52,11 @@ export const register = ({
   const body = JSON.stringify({ firstName, lastName, email, password });
 
   try {
-    const res = await axios.post("/api/users", body, config);
+    const res = await axios.post(
+      "https://maincourse-backend.herokuapp.com/api/auth",
+      body,
+      config
+    );
 
     dispatch({
       type: REGISTER_SUCCESS,
@@ -78,13 +87,13 @@ export const login = (email, password) => async dispatch => {
   const body = JSON.stringify({ email, password });
 
   try {
-    const res = await axios.post("/api/auth", body, config);
-    // const res = await axios.post(
-    // 	"https://maincourse-backend.herokuapp.com/api/auth",
-    // 	body,
-    // 	config
-    // );
-    console.log(res);
+    // const res = await axios.post("/api/auth", body, config);
+    const res = await axios.post(
+      "https://maincourse-backend.herokuapp.com/api/auth",
+      body,
+      config
+    );
+
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data
@@ -104,7 +113,9 @@ export const login = (email, password) => async dispatch => {
 };
 
 // Logout user
-export const logout = () => dispatch => {
-  console.log("let us log out");
-  dispatch({ type: LOGOUT });
+export const logout = () => {
+  return dispatch => {
+    console.log("log me the eff out");
+    dispatch({ type: LOGOUT });
+  };
 };

@@ -1,4 +1,6 @@
 import React, { useReducer } from "react";
+import { Redirect } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { Select } from "antd";
 import ProfileBody from "../styled/ProfileBody";
 import { updateProfileReducer, initialState } from "./reducers";
@@ -16,6 +18,7 @@ const options = [
 ];
 
 const Profile = () => {
+  const isAuth = useSelector(state => state.auth.isAuthenticated);
   const [profileData, dispatchProfile] = useReducer(
     updateProfileReducer,
     initialState
@@ -23,12 +26,15 @@ const Profile = () => {
 
   const { diets } = profileData;
   const handleDietSelections = value => {
-    // console.log(value);
     dispatchProfile({ type: UPDATE_DIETS, payload: value });
   };
 
   const filteredOptions = options.filter(o => !diets.includes(o));
-  console.log(filteredOptions);
+
+  if (!isAuth) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <ProfileBody>
       <div className="profileTitle">Title & intro</div>

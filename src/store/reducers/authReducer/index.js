@@ -17,7 +17,6 @@ const initialState = {
 
 const authReducer = (state = initialState, action) => {
   const { payload, type } = action;
-
   switch (type) {
     case USER_LOADED:
       return {
