@@ -10,7 +10,7 @@ import { setAlert } from "../../store/actions/alertActions";
 
 const Register = () => {
 	const dispatch = useDispatch();
-	const isAuth = useSelector(state => state.auth);
+	const isAuth = useSelector(state => state.auth.isAuthenticated);
 	const [formData, setFormData] = useState({
 		firstName: "",
 		lastName: "",

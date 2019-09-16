@@ -68,6 +68,7 @@ export const register = ({
 
 // login user
 export const login = (email, password) => async dispatch => {
+	console.log("login hit");
 	const config = {
 		headers: {
 			"Content-Type": "application/json"
@@ -78,6 +79,11 @@ export const login = (email, password) => async dispatch => {
 
 	try {
 		const res = await axios.post("/api/auth", body, config);
+		// const res = await axios.post(
+		// 	"https://maincourse-backend.herokuapp.com/api/auth",
+		// 	body,
+		// 	config
+		// );
 
 		dispatch({
 			type: LOGIN_SUCCESS,
