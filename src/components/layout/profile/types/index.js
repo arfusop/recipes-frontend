@@ -1,2 +1,6 @@
 export const UPDATE_DOB = "UPDATE_DOB";
 export const UPDATE_DIETS = "UPDATE_DIETS";
+export const UPDATE_ALLERGIES = "UPDATE_ALLERGIES";
+export const UPDATE_SKILL = "UPDATE_SKILL";
+export const UPDATE_HOUSEHOLD = "UPDATE_HOUSEHOLD";
+export const UPDATE_GENDER = "UPDATE_GENDER";
