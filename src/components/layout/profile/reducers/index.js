@@ -1,6 +1,7 @@
-import { UPDATE_DIETS } from "../types";
+import { UPDATE_DIETS, UPDATE_DOB } from "../types";
 export const initialState = {
-  diets: []
+  diets: [],
+  dob: ""
 };
 
 export const updateProfileReducer = (state = initialState, action) => {
@@ -10,6 +11,11 @@ export const updateProfileReducer = (state = initialState, action) => {
       return {
         ...state,
         diets: payload
+      };
+    case UPDATE_DOB:
+      return {
+        ...state,
+        dob: payload
       };
 
     default:

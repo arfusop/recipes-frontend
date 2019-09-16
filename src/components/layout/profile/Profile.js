@@ -1,10 +1,10 @@
 import React, { useReducer } from "react";
 import { Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Select } from "antd";
+import { DatePicker, Select } from "antd";
 import ProfileBody from "../styled/ProfileBody";
 import { updateProfileReducer, initialState } from "./reducers";
-import { UPDATE_DIETS } from "./types";
+import { UPDATE_DIETS, UPDATE_DOB } from "./types";
 
 const options = [
   "Keto",
@@ -14,7 +14,9 @@ const options = [
   "Vegetarian",
   "Vegan",
   "Gluten Free",
-  "Intermittent Fasting"
+  "Intermittent Fasting",
+  "Weight Watchers",
+  ""
 ];
 
 const Profile = () => {
@@ -29,12 +31,16 @@ const Profile = () => {
     dispatchProfile({ type: UPDATE_DIETS, payload: value });
   };
 
+  const handleDOBSelection = value => {
+    dispatchProfile({ type: UPDATE_DOB, payload: value._d });
+  };
+
   const filteredOptions = options.filter(o => !diets.includes(o));
 
   if (!isAuth) {
     return <Redirect to="/" />;
   }
-
+  console.log(profileData);
   return (
     <ProfileBody>
       <div className="profileTitle">Title & intro</div>
@@ -43,6 +49,14 @@ const Profile = () => {
         <div className="profileOptionsContainer">
           <div className="profileOptionsTitle">Profile</div>
           <div className="profileOptionsBody">
+            <div>
+              <span>DOB</span>
+              <DatePicker
+                // value={dob}
+                onChange={handleDOBSelection}
+                size="medium"
+              />
+            </div>
             <div>
               <span>Diets</span>
               <Select
