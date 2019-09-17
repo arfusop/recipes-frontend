@@ -9,6 +9,7 @@ import setAuthToken from "./utils/setAutoToken";
 import Navbar from "./components/layout/Navbar";
 import Profile from "./components/layout/profile/Profile";
 import Landing from "./components/layout/Landing";
+import Dashboard from "./components/layout/Dashboard";
 import Alert from "./components/layout/Alert";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
@@ -36,6 +37,7 @@ const App = () => {
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/profile" component={Profile} />
+              <Route exact path="/dashboard" component={Dashboard} />
             </Switch>
           </section>
         </Fragment>

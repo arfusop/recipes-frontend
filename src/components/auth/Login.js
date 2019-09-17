@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-import { Button, Input, Icon } from "antd";
+import { Button, Input, Icon, Spin } from "antd";
 import Body from "./styled/Body";
 import { login } from "../../store/actions/authActions";
 
@@ -12,6 +12,7 @@ const Login = () => {
     email: "",
     password: ""
   });
+  const [loading, setLoading] = useState(false);
 
   const { email, password } = formData;
 
@@ -20,12 +21,13 @@ const Login = () => {
 
   const onSubmit = e => {
     e.preventDefault();
+    setLoading(true);
     dispatch(login(email, password));
   };
 
   // redirect if logged in
   if (isAuth) {
-    return <Redirect to="/profile" />;
+    return <Redirect to="/dashboard" />;
   }
 
   return (
@@ -62,6 +64,7 @@ const Login = () => {
           Sign up
         </Link>
       </div>
+      {loading && <Spin />}
     </Body>
   );
 };
