@@ -1,14 +1,15 @@
 import React, { useReducer } from "react";
 import { Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { DatePicker, Select } from "antd";
+import { DatePicker, InputNumber, Select } from "antd";
 import ProfileBody from "../styled/ProfileBody";
 import { updateProfileReducer, initialState } from "./reducers";
 import {
 	UPDATE_DIETS,
 	UPDATE_DOB,
 	UPDATE_ALLERGIES,
-	UPDATE_SKILL
+	UPDATE_SKILL,
+	UPDATE_GENDER
 } from "./types";
 
 const allDiets = [
@@ -20,7 +21,8 @@ const allDiets = [
 	"Vegan",
 	"Gluten Free",
 	"Intermittent Fasting",
-	"Weight Watchers"
+	"Weight Watchers",
+	"mediterranean Diet"
 ];
 
 const allAllergies = [
@@ -32,7 +34,8 @@ const allAllergies = [
 	"Fish",
 	"Wheat",
 	"Gluten",
-	"Soy"
+	"Soy",
+	"Fruit"
 ];
 
 const skills = [
@@ -66,6 +69,10 @@ const Profile = () => {
 
 	const handleSkillSelection = value => {
 		dispatchProfile({ type: UPDATE_SKILL, payload: value });
+	};
+
+	const handleGenderSelection = value => {
+		dispatchProfile({ type: UPDATE_GENDER, payload: value });
 	};
 
 	const filteredDiets = allDiets.filter(o => !diets.includes(o));
@@ -137,6 +144,28 @@ const Profile = () => {
 								style={{ width: "100%" }}
 							>
 								{skills.map((item, index) => {
+									return (
+										<Select.Option key={index} value={item}>
+											{item}
+										</Select.Option>
+									);
+								})}
+							</Select>
+						</div>
+						<div>
+							<span>Household Size</span>
+							<InputNumber min={1} max={10} defaultValue={1} />
+						</div>
+						<div>
+							<span>Gender</span>
+							<Select
+								// mode="multiple"
+								placeholder="Gender"
+								value={gender}
+								onChange={handleGenderSelection}
+								style={{ width: "100%" }}
+							>
+								{["Male", "Female"].map((item, index) => {
 									return (
 										<Select.Option key={index} value={item}>
 											{item}
