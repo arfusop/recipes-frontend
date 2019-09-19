@@ -3,49 +3,17 @@ import { Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { DatePicker, InputNumber, Select } from "antd";
 import ProfileBody from "../styled/ProfileBody";
+import ProfileImage from "./components/ProfileImage";
 import { updateProfileReducer, initialState } from "./reducers";
 import {
   UPDATE_DIETS,
   UPDATE_DOB,
   UPDATE_ALLERGIES,
   UPDATE_SKILL,
-  UPDATE_GENDER
+  UPDATE_GENDER,
+  UPDATE_PROFILE_IMG
 } from "./types";
-
-const allDiets = [
-  "Keto",
-  "Paleo",
-  "Atkins",
-  "Whole30",
-  "Vegetarian",
-  "Vegan",
-  "Gluten Free",
-  "Intermittent Fasting",
-  "Weight Watchers",
-  "Mediterranean Diet"
-];
-
-const allAllergies = [
-  "Milk/Dairy",
-  "Eggs",
-  "Peanuts",
-  "Tree Nuts",
-  "Shellfish",
-  "Fish",
-  "Wheat",
-  "Gluten",
-  "Soy",
-  "Fruit"
-];
-
-const skills = [
-  "Beginner",
-  "Intermediate",
-  "Average",
-  "Skilled",
-  "Pro",
-  "Top Chef"
-];
+import { dietOptions, allergieOptions, skills } from "./utils/profile_options";
 
 const Profile = () => {
   const isAuth = useSelector(state => state.auth.isAuthenticated);
@@ -53,6 +21,9 @@ const Profile = () => {
     updateProfileReducer,
     initialState
   );
+
+  const allAllergies = allergieOptions.sort();
+  const allDiets = dietOptions.sort();
 
   const { allergies, cookingSkill, diets, houseHoldSize, gender } = profileData;
   const handleDietSelections = value => {
@@ -78,6 +49,27 @@ const Profile = () => {
   const filteredDiets = allDiets.filter(o => !diets.includes(o));
   const filteredAllergies = allAllergies.filter(a => !allergies.includes(a));
 
+  const onImgUpload = async e => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "MainCourse");
+
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/ddtlpiqwj/image/upload",
+      {
+        method: "POST",
+        body: data
+      }
+    );
+
+    const file = await res.json();
+    dispatchProfile({
+      action: UPDATE_PROFILE_IMG,
+      payload: { small: file.secure_url, large: file.eager[0].secure_url }
+    });
+  };
+
   if (!isAuth) {
     return <Redirect to="/" />;
   }
@@ -86,7 +78,12 @@ const Profile = () => {
     <ProfileBody>
       <div className="profileTitle">Title & intro</div>
       <div className="profileBody">
-        <div>login info/profile pic</div>
+        <div>
+          <div>Login info</div>
+          <div>
+            <ProfileImage onImgUpload={onImgUpload} />
+          </div>
+        </div>
         <div className="profileOptionsContainer">
           <div className="profileOptionsTitle">Profile</div>
           <div className="profileOptionsBody">
