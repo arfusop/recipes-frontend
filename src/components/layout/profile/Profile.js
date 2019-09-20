@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { DatePicker, InputNumber, Select } from "antd";
 import ProfileBody from "../styled/ProfileBody";
 import ProfileImage from "./components/ProfileImage";
+import LoginInfo from "./components/LoginInfo";
 import { updateProfileReducer, initialState } from "./reducers";
 import {
   UPDATE_DIETS,
@@ -79,7 +80,9 @@ const Profile = () => {
       <div className="profileTitle">Title & intro</div>
       <div className="profileBody">
         <div>
-          <div>Login info</div>
+          <div>
+            <LoginInfo />
+          </div>
           <div>
             <ProfileImage onImgUpload={onImgUpload} />
           </div>
