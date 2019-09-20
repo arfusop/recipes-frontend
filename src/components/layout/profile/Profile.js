@@ -26,7 +26,14 @@ const Profile = () => {
   const allAllergies = allergieOptions.sort();
   const allDiets = dietOptions.sort();
 
-  const { allergies, cookingSkill, diets, houseHoldSize, gender } = profileData;
+  const {
+    allergies,
+    cookingSkill,
+    diets,
+    houseHoldSize,
+    gender,
+    profilePic
+  } = profileData;
   const handleDietSelections = value => {
     dispatchProfile({ type: UPDATE_DIETS, payload: value });
   };
@@ -70,6 +77,7 @@ const Profile = () => {
       payload: { small: file.secure_url, large: file.eager[0].secure_url }
     });
   };
+  console.log(profilePic);
 
   if (!isAuth) {
     return <Redirect to="/" />;
@@ -84,7 +92,7 @@ const Profile = () => {
             <LoginInfo />
           </div>
           <div>
-            <ProfileImage onImgUpload={onImgUpload} />
+            <ProfileImage pic={profilePic} onImgUpload={onImgUpload} />
           </div>
         </div>
         <div className="profileOptionsContainer">
