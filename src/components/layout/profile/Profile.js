@@ -1,11 +1,11 @@
-import React, { useReducer } from "react";
+import React from "react";
 import { Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { DatePicker, InputNumber, Select } from "antd";
+import { Button, DatePicker, InputNumber, Select } from "antd";
 import ProfileBody from "../styled/ProfileBody";
 import ProfileImage from "./components/ProfileImage";
 import LoginInfo from "./components/LoginInfo";
-import { updateProfileReducer, initialState } from "./reducers";
+import { dietOptions, allergieOptions, skills } from "./utils/profile_options";
 import {
   UPDATE_DIETS,
   UPDATE_DOB,
@@ -15,15 +15,12 @@ import {
   UPDATE_PROFILE_IMG,
   UPDATE_HOUSEHOLD
 } from "./types";
-import { dietOptions, allergieOptions, skills } from "./utils/profile_options";
+import { useProfile } from "./utils/useProfile";
 
 const Profile = () => {
+  const { profileState, setProfileData } = useProfile();
   const isAuth = useSelector(state => state.auth.isAuthenticated);
   const user = useSelector(state => state.auth.user);
-  const [profileData, dispatchProfile] = useReducer(
-    updateProfileReducer,
-    initialState
-  );
 
   const allAllergies = allergieOptions.sort();
   const allDiets = dietOptions.sort();
@@ -35,30 +32,30 @@ const Profile = () => {
     houseHoldSize,
     gender,
     profilePic
-  } = profileData;
+  } = profileState;
 
   const handleDietSelections = value => {
-    dispatchProfile({ type: UPDATE_DIETS, payload: value });
+    setProfileData(UPDATE_DIETS, value);
   };
 
   const handleAllergiesSelections = value => {
-    dispatchProfile({ type: UPDATE_ALLERGIES, payload: value });
+    setProfileData(UPDATE_ALLERGIES, value);
   };
 
   const handleDOBSelection = value => {
-    dispatchProfile({ type: UPDATE_DOB, payload: value._d });
+    setProfileData(UPDATE_DOB, value._d);
   };
 
   const handleSkillSelection = value => {
-    dispatchProfile({ type: UPDATE_SKILL, payload: value });
+    setProfileData(UPDATE_SKILL, value);
   };
 
   const handleGenderSelection = value => {
-    dispatchProfile({ type: UPDATE_GENDER, payload: value });
+    setProfileData(UPDATE_GENDER, value);
   };
 
   const handleHousehold = value => {
-    dispatchProfile({ type: UPDATE_HOUSEHOLD, payload: value });
+    setProfileData(UPDATE_HOUSEHOLD, value);
   };
 
   const filteredDiets = allDiets.filter(o => !diets.includes(o));
@@ -80,20 +77,14 @@ const Profile = () => {
       // debugger;
       const file = await res.json();
       const imgs = { small: file.secure_url, large: file.eager[0].secure_url };
-      dispatchProfile({
-        type: UPDATE_PROFILE_IMG,
-        payload: imgs
-      });
+      setProfileData(UPDATE_PROFILE_IMG, imgs);
     } catch (error) {
       console.log(e);
     }
   };
 
   const clearImg = () => {
-    dispatchProfile({
-      type: UPDATE_PROFILE_IMG,
-      payload: { small: "", large: "" }
-    });
+    setProfileData(UPDATE_PROFILE_IMG, { small: "", large: "" });
   };
 
   if (!isAuth) {
@@ -218,6 +209,9 @@ const Profile = () => {
           </div>
         </div>
       </div>
+      <Button type="primary" size="large">
+        Submit
+      </Button>
     </ProfileBody>
   );
 };

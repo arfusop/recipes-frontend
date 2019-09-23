@@ -22,12 +22,11 @@ const ProfileImage = ({ pic, onImgUpload, clearImg }) => {
             placeholder="Upload profile pic"
             required
             onChange={e => {
-              console.log("upload image..");
               onImgUpload(e);
             }}
           />
-          <Button onClick={clearImg} size="small" type="danger">
-            <Icon type="close-square" />
+          <Button onClick={clearImg} size="small" type="primary">
+            <Icon type="close" />
           </Button>
         </div>
       </label>

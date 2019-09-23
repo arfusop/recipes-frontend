@@ -9,7 +9,7 @@ import setAuthToken from "./utils/setAutoToken";
 import Navbar from "./components/layout/Navbar";
 import Profile from "./components/layout/profile/Profile";
 import Landing from "./components/layout/Landing";
-import Dashboard from "./components/layout/Dashboard";
+import Dashboard from "./components/layout/dashboard/Dashboard";
 import Alert from "./components/layout/Alert";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
