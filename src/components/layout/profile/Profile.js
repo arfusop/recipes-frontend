@@ -63,20 +63,26 @@ const Profile = () => {
 		const data = new FormData();
 		data.append("file", files[0]);
 		data.append("upload_preset", "MainCourse");
-
-		const res = await fetch(
-			"https://api.cloudinary.com/v1_1/ddtlpiqwj/image/upload",
-			{
-				method: "POST",
-				body: data
-			}
-		);
-
-		const file = await res.json();
-		dispatchProfile({
-			action: UPDATE_PROFILE_IMG,
-			payload: { small: file.secure_url, large: file.eager[0].secure_url }
-		});
+		try {
+			const res = await fetch(
+				// "https://api.cloudinary.com/v1_1/ddtlpiqwj/image/upload",
+				"https://api.cloudinary.com/v1_1/ddtlpiqwj/image/upload",
+				{
+					method: "POST",
+					body: data
+				}
+			);
+			// debugger;
+			console.log(res);
+			const file = await res.json();
+			const imgs = { small: file.secure_url, large: file.eager[0].secure_url };
+			dispatchProfile({
+				action: UPDATE_PROFILE_IMG,
+				payload: imgs
+			});
+		} catch (error) {
+			console.log(e);
+		}
 	};
 
 	if (!isAuth) {
