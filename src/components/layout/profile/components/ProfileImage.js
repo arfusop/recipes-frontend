@@ -1,27 +1,38 @@
 import React from "react";
-import { Icon } from "antd";
+import { Button, Icon } from "antd";
+import ProfileImgBody from "../../styled/ProfileImgBody";
 
-const ProfileImage = ({ pic, onImgUpload }) => {
-	console.log(pic);
-	return (
-		<div>
-			upload profile image
-			<label>
-				{pic.small ? <img src={pic.small} /> : <Icon type="user-add" />}
-				<input
-					type="file"
-					id="file"
-					name="file"
-					placeholder="Upload profile pic"
-					required
-					onChange={e => {
-						console.log("upload image..");
-						onImgUpload(e);
-					}}
-				/>
-			</label>
-		</div>
-	);
+const ProfileImage = ({ pic, onImgUpload, clearImg }) => {
+  return (
+    <ProfileImgBody className="profilePictureContainer">
+      <h4>Upload Profile Picture</h4>
+      <label>
+        <div>
+          {pic.small ? (
+            <img src={pic.small} alt="profile_image" />
+          ) : (
+            <Icon className="profileImgPlaceholder" type="user-add" />
+          )}
+        </div>
+        <div>
+          <input
+            type="file"
+            id="file"
+            name="file"
+            placeholder="Upload profile pic"
+            required
+            onChange={e => {
+              console.log("upload image..");
+              onImgUpload(e);
+            }}
+          />
+          <Button onClick={clearImg} size="small" type="danger">
+            <Icon type="close-square" />
+          </Button>
+        </div>
+      </label>
+    </ProfileImgBody>
+  );
 };
 
 export default ProfileImage;

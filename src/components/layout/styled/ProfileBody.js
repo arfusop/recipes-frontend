@@ -8,6 +8,10 @@ const ProfileBody = styled.form`
   .profileBody {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+  }
+
+  .profileLeftSide {
   }
 `;
 
