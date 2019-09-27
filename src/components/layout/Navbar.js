@@ -23,7 +23,9 @@ const Navbar = () => {
       </li>
       <li>
         <Icon type="logout" />
-        <div onClick={handleLogout}>Logout</div>
+        <a href="#" onClick={handleLogout}>
+          Logout
+        </a>
       </li>
     </ul>
   );
