@@ -2,7 +2,7 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Button, DatePicker, InputNumber, Select } from "antd";
-import ProfileBody from "../../styled/ProfileBody";
+import ProfileBody from "../styled/ProfileBody";
 import ProfileImage from "./components/ProfileImage";
 import LoginInfo from "./components/LoginInfo";
 import { dietOptions, allergieOptions, skills } from "./utils/profile_options";

@@ -4,7 +4,7 @@ import { Link, Redirect } from "react-router-dom";
 import { Button, Input, Icon } from "antd";
 // import PropTypes from 'prop-types';
 import { register } from "../../store/actions/authActions";
-import Body from "../styled/Body";
+import AuthBody from "./styled/AuthBody";
 
 import { setAlert } from "../../store/actions/alertActions";
 
@@ -39,7 +39,7 @@ const Register = () => {
   }
 
   return (
-    <Body className="registerContainer">
+    <AuthBody className="registerContainer">
       <div className="registerHeader">Main Course</div>
       <div className="registerForm">
         <div className="formHeader">Sign Up</div>
@@ -104,12 +104,8 @@ const Register = () => {
           Log in
         </Link>
       </div>
-    </Body>
+    </AuthBody>
   );
 };
-
-// Register.propTypes = {
-// 	setAlert
-// };
 
 export default Register;

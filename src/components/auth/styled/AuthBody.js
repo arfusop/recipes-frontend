@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-const Body = styled.div`
+const AuthBody = styled.div`
   width: 75%;
   display: grid;
   grid-template-columns: 1fr;
@@ -52,4 +52,4 @@ const Body = styled.div`
   }
 `;
 
-export default Body;
+export default AuthBody;

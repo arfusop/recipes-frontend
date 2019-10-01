@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { Button, Input, Icon, Spin } from "antd";
-import Body from "../styled/Body";
+import AuthBody from "./styled/AuthBody";
 import { login } from "../../store/actions/authActions";
 
 const Login = () => {
@@ -31,7 +31,7 @@ const Login = () => {
   }
 
   return (
-    <Body className="registerContainer">
+    <AuthBody className="registerContainer">
       <div className="registerHeader">Main Course</div>
       <div className="registerForm">
         <div className="formHeader">Log In</div>
@@ -65,7 +65,7 @@ const Login = () => {
         </Link>
       </div>
       {loading && <Spin />}
-    </Body>
+    </AuthBody>
   );
 };
 
