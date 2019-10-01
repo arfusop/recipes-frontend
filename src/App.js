@@ -2,9 +2,11 @@ import React, { Fragment, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
+import { ThemeProvider } from "emotion-theming";
 
 import { loadUser } from "./store/actions/authActions";
 import setAuthToken from "./utils/setAutoToken";
+import { theme } from "./utils/theme";
 
 import Navbar from "./components/layout/Navbar";
 import Profile from "./components/layout/profile/Profile";
@@ -26,23 +28,25 @@ const App = () => {
   }, []);
 
   return (
-    <Provider store={store}>
-      <Router>
-        <Fragment>
-          <Navbar />
-          <Route exact path="/" component={Landing} />
-          <section className="container">
-            <Alert />
-            <Switch>
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/profile" component={Profile} />
-              <Route exact path="/dashboard" component={Dashboard} />
-            </Switch>
-          </section>
-        </Fragment>
-      </Router>
-    </Provider>
+    <ThemeProvider theme={theme}>
+      <Provider store={store}>
+        <Router>
+          <Fragment>
+            <Navbar />
+            <Route exact path="/" component={Landing} />
+            <section className="container">
+              <Alert />
+              <Switch>
+                <Route exact path="/register" component={Register} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/profile" component={Profile} />
+                <Route exact path="/dashboard" component={Dashboard} />
+              </Switch>
+            </section>
+          </Fragment>
+        </Router>
+      </Provider>
+    </ThemeProvider>
   );
 };
 
