@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Icon } from "antd";
-import ProfileImgBody from "../../styled/ProfileImgBody";
+import ProfileImgBody from "../../../styled/ProfileImgBody";
 
 const ProfileImage = ({ pic, onImgUpload, clearImg }) => {
   return (

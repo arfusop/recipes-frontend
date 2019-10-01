@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { Icon } from "antd";
-import Nav from "./styled/Nav";
+import Nav from "../styled/Nav";
 import { logout } from "../../store/actions/authActions";
 
 const Navbar = () => {

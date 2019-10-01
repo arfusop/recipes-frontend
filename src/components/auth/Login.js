@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { Button, Input, Icon, Spin } from "antd";
-import Body from "./styled/Body";
+import Body from "../styled/Body";
 import { login } from "../../store/actions/authActions";
 
 const Login = () => {

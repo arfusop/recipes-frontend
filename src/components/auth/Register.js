@@ -4,7 +4,7 @@ import { Link, Redirect } from "react-router-dom";
 import { Button, Input, Icon } from "antd";
 // import PropTypes from 'prop-types';
 import { register } from "../../store/actions/authActions";
-import Body from "./styled/Body";
+import Body from "../styled/Body";
 
 import { setAlert } from "../../store/actions/alertActions";
 
