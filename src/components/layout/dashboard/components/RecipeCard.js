@@ -22,8 +22,8 @@ const RecipeCard = () => {
       }
     >
       <div className="cardBody">
-        <div classBame="cardLeft">
-          <h2 className="recipeTitle">Homemade Pizza</h2>
+        <div className="cardLeft">
+          <span className="recipeTitle">Homemade Pizza</span>
           <span>Dinner</span>
           <span>{format(new Date(), "mm/dd/yyyy hh:mm a")}</span>
         </div>

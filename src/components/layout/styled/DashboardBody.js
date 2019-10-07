@@ -3,17 +3,18 @@ import styled from "@emotion/styled";
 const DashboardBody = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.25fr 1fr;
+  grid-template-rows: 150px 1fr;
   grid-gap: 20px;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  /* height: 100%; */
+  padding-bottom: 10px;
 
   .header {
-    height: 100%;
+    /* height: 100%; */
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: repeat(2, 75px);
     justify-content: center;
     align-items: center;
   }
@@ -81,6 +82,11 @@ const DashboardBody = styled.div`
     grid-template-rows: 1fr;
     grid-column-gap: 10px;
     grid-row-gap: 0px;
+  }
+
+  .cardLeft {
+    display: grid;
+    grid-template-rows: 1fr repeat(2, 40px);
   }
 
   .recipeTitle {
