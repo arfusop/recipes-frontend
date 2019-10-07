@@ -1,7 +1,11 @@
 import React from "react";
 import { Card, Icon, Rate } from "antd";
+import { format } from "date-fns";
 
 const RecipeCard = () => {
+  const stars = Math.floor(Math.random() * (5 - 4 + 1)) + 4;
+  const difficulty = Math.floor(Math.random() * (5 - 4 + 1)) + 4;
+
   return (
     <Card
       hoverable
@@ -10,13 +14,30 @@ const RecipeCard = () => {
         <Icon type="edit" key="edit" />,
         <Icon type="delete" key="delete" />
       ]}
+      cover={
+        <img
+          src="https://images-gmi-pmc.edge-generalmills.com/f4c0a86f-b080-45cd-a8a7-06b63cdb4671.jpg"
+          alt="food"
+        />
+      }
     >
-      <div classBame="cardLeft">
-        Title Category Author Date published/edited
-      </div>
-      <div classBame="cardRight">
-        Rating: <Rate character={<Icon type="star" />} allowHalf />
-        Difficulty: <Rate character={<Icon type="scissor" />} allowHalf />
+      <div className="cardBody">
+        <div classBame="cardLeft">
+          <h2 className="recipeTitle">Homemade Pizza</h2>
+          <span>Dinner</span>
+          <span>{format(new Date(), "mm/dd/yyyy hh:mm a")}</span>
+        </div>
+        <div classBame="cardRight">
+          Rating: <Rate allowHalf disabled defaultValue={stars} />
+          Difficulty:{" "}
+          <Rate
+            disabled
+            defaultValue={difficulty}
+            character={<i className="fas fa-skull-crossbones" />}
+            style={{ color: "tomato", fontSize: 20 }}
+            allowHalf
+          />
+        </div>
       </div>
     </Card>
   );

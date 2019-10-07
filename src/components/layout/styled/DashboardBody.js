@@ -74,6 +74,18 @@ const DashboardBody = styled.div`
     /* grid-template-rows: repeat(4, 1fr); */
     grid-gap: 20px;
   }
+
+  .cardBody {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 0px;
+  }
+
+  .recipeTitle {
+    color: ${props => props.theme.blue};
+  }
 `;
 
 export default DashboardBody;
