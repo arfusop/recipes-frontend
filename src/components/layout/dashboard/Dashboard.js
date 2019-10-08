@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { useSpring, animated } from "react-spring";
 
 import { getCurrentProfile } from "../../../store/actions/profileActions";
 import DashboardBody from "../styled/DashboardBody";
@@ -14,6 +15,7 @@ const Dashboard = () => {
   }, []);
 
   const isAuth = useSelector(state => state.auth.isAuthenticated);
+  const props = useSpring({ opacity: 1, from: { opacity: 0 } });
 
   if (!isAuth) {
     return <Redirect to="/" />;
@@ -22,11 +24,12 @@ const Dashboard = () => {
   return (
     <DashboardBody className="dashboardBody">
       <DashHeader />
-      <div className="recipesContainer">
+
+      <animated.div className="recipesContainer" style={props}>
         {[1, 1, 1, 1, 1, 1, 1, 1, 1].map((recipe, i) => (
           <RecipeCard />
         ))}
-      </div>
+      </animated.div>
     </DashboardBody>
   );
 };
