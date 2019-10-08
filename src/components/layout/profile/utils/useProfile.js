@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useReducer, useEffect } from "react";
 import { useSelector } from "react-redux";
 import {
   UPDATE_DIETS,
@@ -17,7 +17,12 @@ export const useProfile = type => {
     initialState
   );
 
+  useEffect(() => {
+    console.log(profileState);
+  }, [profileState]);
+
   const profile = useSelector(state => state.profile.activeProfile);
+
   if (profile) {
     switch (type) {
       case UPDATE_DIETS:

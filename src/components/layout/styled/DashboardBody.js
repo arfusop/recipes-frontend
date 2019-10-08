@@ -71,9 +71,35 @@ const DashboardBody = styled.div`
   /* RECIPES */
   .recipesContainer {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     /* grid-template-rows: repeat(4, 1fr); */
     grid-gap: 20px;
+  }
+
+  @media (min-width: ${props =>
+      props.theme.breakpoints.desktopMedium}) and (max-width: ${props =>
+      props.theme.breakpoints.desktopLarge}) {
+    .recipesContainer {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  @media (max-width: ${props => props.theme.breakpoints.desktopMedium}) {
+    .recipesContainer {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: ${props => props.theme.breakpoints.desktopSmall}) {
+    .recipesContainer {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: ${props => props.theme.breakpoints.mobileMax}) {
+    .recipesContainer {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
 
   .cardBody {
