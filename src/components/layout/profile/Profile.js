@@ -21,12 +21,11 @@ const Profile = () => {
   const { profileState, setProfileData } = useProfile();
   const isAuth = useSelector(state => state.auth.isAuthenticated);
   const user = useSelector(state => state.auth.user);
-
+  console.log("profileState: ", profileState);
   const allAllergies = allergieOptions.sort();
   const allDiets = dietOptions.sort();
-
   const {
-    allergies,
+    foodAllergies: allergies,
     cookingSkill,
     diets,
     houseHoldSize,

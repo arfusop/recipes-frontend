@@ -27,7 +27,7 @@ const RecipeCard = () => {
           <span>Dinner</span>
           <span>{format(new Date(), "mm/dd/yyyy hh:mm a")}</span>
         </div>
-        <div classBame="cardRight">
+        <div className="cardRight">
           Rating: <Rate allowHalf disabled defaultValue={stars} />
           Difficulty:{" "}
           <Rate

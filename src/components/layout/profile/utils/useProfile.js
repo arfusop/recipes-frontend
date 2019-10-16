@@ -17,10 +17,6 @@ export const useProfile = type => {
     initialState
   );
 
-  useEffect(() => {
-    console.log(profileState);
-  }, [profileState]);
-
   const profile = useSelector(state => state.profile.activeProfile);
 
   if (profile) {
@@ -50,7 +46,7 @@ export const useProfile = type => {
         break;
     }
 
-    return;
+    return { profileState: profile, setProfileData: () => null };
   }
 
   const setProfileData = (type, data) => {

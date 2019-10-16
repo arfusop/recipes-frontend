@@ -5,9 +5,14 @@ import { GET_PROFILE, PROFILE_ERROR } from "../../types/profileTypes";
 // get current profile
 export const getCurrentProfile = () => async dispatch => {
   // api/profile/me
+  const headers = {
+    "x-auth-token": localStorage.getItem("token")
+  };
+
   try {
     const res = await axios.get(
-      "https://maincourse-backend.herokuapp.com/api/profile/me"
+      "https://maincourse-backend.herokuapp.com/api/profile/me",
+      { headers }
     );
 
     dispatch({ type: GET_PROFILE, payload: res.data });
