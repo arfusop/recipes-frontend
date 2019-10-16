@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { Button, Input, Icon, Spin } from "antd";
@@ -7,6 +7,16 @@ import { login } from "../../store/actions/authActions";
 
 const Login = () => {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    // add event listener
+    document.addEventListener("keypress", e => handleKeyPress(e));
+    return () => {
+      // remove event listener
+      document.removeEventListener("keypress", e => handleKeyPress(e));
+    };
+  }, []);
+
   const isAuth = useSelector(state => state.auth.isAuthenticated);
   const [formData, setFormData] = useState({
     email: "",
@@ -20,9 +30,15 @@ const Login = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = e => {
-    e.preventDefault();
     setLoading(true);
     dispatch(login(email, password));
+  };
+
+  const handleKeyPress = e => {
+    const { key } = e;
+    if (key === "Enter") {
+      onSubmit();
+    }
   };
 
   // redirect if logged in
