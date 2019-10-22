@@ -14,7 +14,6 @@ export const getCurrentProfile = () => async dispatch => {
 			"https://maincourse-backend.herokuapp.com/api/profile/me",
 			{ headers }
 		);
-		console.log(res);
 
 		dispatch({ type: GET_PROFILE, payload: res.data });
 	} catch (error) {
