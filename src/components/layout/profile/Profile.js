@@ -2,6 +2,7 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, DatePicker, InputNumber, Select } from "antd";
+import { format } from "date-fns";
 import ProfileBody from "../styled/ProfileBody";
 import ProfileImage from "./components/ProfileImage";
 import LoginInfo from "./components/LoginInfo";
@@ -28,6 +29,7 @@ const Profile = () => {
 		foodAllergies: allergies,
 		cookingSkill,
 		diets,
+		dob,
 		houseHoldSize,
 		gender,
 		profilePic
@@ -120,7 +122,7 @@ const Profile = () => {
 						<div>
 							<span>DOB</span>
 							<DatePicker
-								// value={dob}
+								// defaultValue={dob}
 								onChange={handleDOBSelection}
 								size="medium"
 							/>

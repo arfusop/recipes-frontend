@@ -15,6 +15,9 @@ export const getCurrentProfile = () => async dispatch => {
 			{ headers }
 		);
 
+		// set the format of the dob data to a full date
+		res.data.dob = new Date(res.data.dob);
+
 		dispatch({ type: GET_PROFILE, payload: res.data });
 	} catch (error) {
 		console.log(error);
