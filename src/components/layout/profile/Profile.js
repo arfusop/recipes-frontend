@@ -2,7 +2,7 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, DatePicker, InputNumber, Select } from "antd";
-import { format } from "date-fns";
+import moment from "moment";
 import ProfileBody from "../styled/ProfileBody";
 import ProfileImage from "./components/ProfileImage";
 import LoginInfo from "./components/LoginInfo";
@@ -17,6 +17,8 @@ import {
 	UPDATE_PROFILE_IMG,
 	UPDATE_HOUSEHOLD
 } from "../../../store/types/profileTypes";
+
+import { updateUserProfile } from "../../../utils/profileUtils";
 
 const Profile = () => {
 	const dispatch = useDispatch();
@@ -40,7 +42,7 @@ const Profile = () => {
 	};
 
 	const handleAllergiesSelections = value => {
-		dispatch(updateCurrentProfile(UPDATE_ALLERGIES, value, "allergies"));
+		dispatch(updateCurrentProfile(UPDATE_ALLERGIES, value, "foodAllergies"));
 	};
 
 	const handleDOBSelection = value => {
@@ -94,6 +96,18 @@ const Profile = () => {
 		);
 	};
 
+	const onSubmitClick = () => {
+		updateUserProfile({
+			allergies,
+			cookingSkill,
+			diets,
+			dob,
+			houseHoldSize,
+			gender,
+			profilePic
+		});
+	};
+
 	if (!isAuth) {
 		return <Redirect to="/" />;
 	}
@@ -122,7 +136,7 @@ const Profile = () => {
 						<div>
 							<span>DOB</span>
 							<DatePicker
-								// defaultValue={dob}
+								defaultValue={moment(dob)}
 								onChange={handleDOBSelection}
 								size="medium"
 							/>
@@ -216,7 +230,7 @@ const Profile = () => {
 					</div>
 				</div>
 			</div>
-			<Button type="primary" size="large">
+			<Button onClick={onSubmitClick} type="primary" size="large">
 				Submit
 			</Button>
 		</ProfileBody>
